@@ -69,19 +69,6 @@ def get_epoch_members(height):
     return result
 
 
-def get_final_conf_ratio(address):
-    """Returns confirmationPoCRatio from show-participant at epoch end.
-    Only meaningful when the participant was not dropped (has confirmation_weight).
-    """
-    d = run_cli(["query", "inference", "show-participant", address], height=EPOCH_END_HEIGHT)
-    if not d:
-        return None
-    ratio = d.get("participant", {}).get("current_epoch_stats", {}).get("confirmationPoCRatio", {})
-    value = ratio.get("value")
-    if value is None:
-        return None
-    exponent = int(ratio.get("exponent", 0))
-    return int(value) * (10 ** exponent)
 
 
 def get_rewards(address):
@@ -118,13 +105,7 @@ def main():
 
         e_final = members_final.get(addr)
         final_dropped = e_final is None or e_final["dropped"]
-
-        if final_dropped:
-            r_final = 0.0
-        else:
-            r_final = get_final_conf_ratio(addr)
-            if r_final is None:
-                r_final = 0.0
+        r_final = 0.0 if final_dropped else (e_final["ratio"] or 0.0)
 
         actual_rewards = participants_map.get(addr, {}).get("rewarded_ngonka", 0)
         weight = int(e1.get("weight", 0))

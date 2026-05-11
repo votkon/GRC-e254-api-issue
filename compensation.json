@@ -9,15 +9,15 @@
   "epoch_theoretical_reward_gonka": 286425.17226835364,
   "total_epoch_weight": 1028204,
   "healthy_participants": 47,
-  "affected_participants": 13,
-  "total_compensation_ngonka": 58141966652856,
-  "total_compensation_gonka": 58141.9666528568,
+  "affected_participants": 14,
+  "total_compensation_ngonka": 58375964132642,
+  "total_compensation_gonka": 58375.964132642344,
   "compensation": [
     {
       "address": "gonka1q5xt54wncgzk7dxv9x64uln68455g83wu9tugg",
       "weight": 185380,
       "cpoc1_ratio": 0.9708274894810659,
-      "final_ratio": 0.035594095715219,
+      "final_ratio": 0.015638148667601683,
       "compensation_ngonka": 51641015241243,
       "compensation_gonka": 51641.01524124337
     },
@@ -33,7 +33,7 @@
       "address": "gonka1wthc28t25pg63hzvl07rl8e8r6km6hesl6jhsz",
       "weight": 3986,
       "cpoc1_ratio": 1.1108881083793276,
-      "final_ratio": 0.3691877769529437,
+      "final_ratio": 0.3728048168590065,
       "compensation_ngonka": 1110373755268,
       "compensation_gonka": 1110.3737552680766
     },
@@ -108,6 +108,14 @@
       "final_ratio": 0.0,
       "compensation_ngonka": 313110913427,
       "compensation_gonka": 313.1109134273252
+    },
+    {
+      "address": "gonka1vjz8csqsr0ph0lv0yylc4auypnzrld7y6l2feu",
+      "weight": 840,
+      "cpoc1_ratio": 1.0523809523809524,
+      "final_ratio": 0.3976190476190476,
+      "compensation_ngonka": 233997479785,
+      "compensation_gonka": 233.99747978554552
     },
     {
       "address": "gonka1y4kyhqy022gt4kklxxflgqkutnx96ssww66zg6",

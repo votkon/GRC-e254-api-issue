@@ -76,7 +76,7 @@ Eligibility criteria:
 
 CPoC 1 dropouts are excluded (failed before the bug window). Participants who received rewards are excluded (partially compensated by the protocol).
 
-This yields **13 affected addresses** with a total compensation of **58,141.97 GONKA** — see `compensation.csv` for per-address amounts.
+This yields **14 affected addresses** with a total compensation of **58,375.96 GONKA** — see `compensation.csv` for per-address amounts.
 
 Compensation formula: `weight / total_epoch_weight * epoch_theoretical_reward`  
 Epoch 254 theoretical reward pool: **286,425.17 GONKA** (`323,000 * e^(-0.000475 * 253)`)  
@@ -96,6 +96,7 @@ Total epoch weight: **1,028,204**
 | gonka1xwkesaxvdadh9wt9yyladu0r260s7whklcktds | 1,245 | pass | fail | 346.82 |
 | gonka163ug8zucqeag9v5ey4au34jqt7vejkmxsg74eu | 1,236 | pass | fail | 344.31 |
 | gonka1mdy7nlecw4xaqdxmeh3qlqzakg9ftge9szfqgg | 1,124 | pass | fail | 313.11 |
+| gonka1vjz8csqsr0ph0lv0yylc4auypnzrld7y6l2feu | 840 | pass | fail | 233.99 |
 | gonka1y4kyhqy022gt4kklxxflgqkutnx96ssww66zg6 | 787 | pass | fail | 219.23 |
 
 ## Fix Commits
