@@ -47,17 +47,35 @@ def run_cli(args, height=None):
 
 
 def get_epoch_members(height):
+    """Returns members from epoch group data with cw/weight ratio and dropout flag."""
     d = run_cli(["query", "inference", "show-epoch-group-data", str(EPOCH)], height=height)
     if not d:
         return {}
     vw = d.get("epoch_group_data", d).get("validation_weights", [])
-    return {
-        x["member_address"]: {
-            "weight": int(x.get("weight", 0)),
-            "cw": int(x["confirmation_weight"]) if "confirmation_weight" in x else None,
-        }
-        for x in vw
-    }
+    result = {}
+    for x in vw:
+        addr = x["member_address"]
+        weight = int(x.get("weight", 0))
+        cw = int(x["confirmation_weight"]) if "confirmation_weight" in x else None
+        ratio = cw / weight if (cw is not None and weight > 0) else None
+        dropped = cw is None  # no confirmation_weight = dropped from CPoC
+        result[addr] = {"weight": weight, "ratio": ratio, "dropped": dropped}
+    return result
+
+
+def get_final_conf_ratio(address):
+    """Returns confirmationPoCRatio from show-participant at epoch end.
+    Only meaningful when the participant was not dropped (has confirmation_weight).
+    """
+    d = run_cli(["query", "inference", "show-participant", address], height=EPOCH_END_HEIGHT)
+    if not d:
+        return None
+    ratio = d.get("participant", {}).get("current_epoch_stats", {}).get("confirmationPoCRatio", {})
+    value = ratio.get("value")
+    if value is None:
+        return None
+    exponent = int(ratio.get("exponent", 0))
+    return int(value) * (10 ** exponent)
 
 
 def get_rewards(address):
@@ -71,41 +89,44 @@ def get_rewards(address):
     return int(d.get("epochPerformanceSummary", {}).get("rewarded_coins", 0))
 
 
-def conf_ratio(entry):
-    if entry is None or entry.get("cw") is None:
-        return None
-    w = int(entry.get("weight", 0))
-    cw = int(entry.get("cw", 0))
-    return cw / w if w > 0 else 0.0
-
-
 def main():
     print("Loading pre-computed participant data...", flush=True)
     data_file = os.path.join(os.path.dirname(__file__), "epoch254_participants.json")
     with open(data_file) as f:
         participants_map = {p["address"]: p for p in json.load(f)}
 
-    print("Loading snapshots...", flush=True)
-    after_cpoc1 = get_epoch_members(CPOC1_HEIGHT)     # state after CPoC 1
-    after_epoch  = get_epoch_members(EPOCH_END_HEIGHT) # final state after all CPoCs
+    print("Loading epoch members at CPoC1...", flush=True)
+    members_cpoc1 = get_epoch_members(CPOC1_HEIGHT)
+    print("Loading epoch members at epoch end...", flush=True)
+    members_final = get_epoch_members(EPOCH_END_HEIGHT)
 
     healthy = []
     affected = []
 
-    for addr, e1 in after_cpoc1.items():
-        r1 = conf_ratio(e1)
+    total = len(members_cpoc1)
+    for i, (addr, e1) in enumerate(members_cpoc1.items(), 1):
+        print(f"  [{i}/{total}] {addr}", flush=True)
+        r1 = e1["ratio"]
         if r1 is None:
             continue
 
-        e_final = after_epoch.get(addr)
-        r_final = conf_ratio(e_final) if e_final is not None else 0.0
-        if r_final is None:
+        e_final = members_final.get(addr)
+        final_dropped = e_final is None or e_final["dropped"]
+
+        if final_dropped:
             r_final = 0.0
+        else:
+            r_final = get_final_conf_ratio(addr)
+            if r_final is None:
+                r_final = 0.0
 
         actual_rewards = participants_map.get(addr, {}).get("rewarded_ngonka", 0)
         weight = int(e1.get("weight", 0))
 
-        if r1 > CPOC1_MIN_RATIO and r_final < FINAL_MAX_RATIO and actual_rewards == 0:
+        ratio_criteria = r1 > CPOC1_MIN_RATIO and r_final < FINAL_MAX_RATIO and actual_rewards == 0
+        dropped_criteria = r1 > CPOC1_MIN_RATIO and final_dropped and actual_rewards == 0
+
+        if ratio_criteria or dropped_criteria:
             affected.append({
                 "address": addr,
                 "weight": weight,
@@ -113,7 +134,7 @@ def main():
                 "final_ratio": r_final,
                 "actual_rewards_ngonka": actual_rewards,
             })
-        elif r1 > CPOC1_MIN_RATIO and actual_rewards > 0 and r_final >= CPOC1_MIN_RATIO:
+        elif r1 > CPOC1_MIN_RATIO and actual_rewards > 0 and not final_dropped:
             healthy.append({
                 "address": addr,
                 "weight": weight,
