@@ -13,6 +13,7 @@ Methodology:
 """
 
 import json
+import math
 import subprocess
 import sys
 import os
@@ -31,6 +32,11 @@ CPOC1_HEIGHT  = 3928860  # CPoC 1 concluded
 
 CPOC1_MIN_RATIO  = 0.455  # CPoC 1 ratio must be > 45.5%
 FINAL_MAX_RATIO  = 0.455  # final confirmation ratio must be < 45.5%
+
+# Tokenomics: epoch reward pool = initial_epoch_reward * exp(decay_rate * (epoch - genesis_epoch))
+INITIAL_EPOCH_REWARD = 323_000_000_000_000  # ngonka
+DECAY_RATE = -475e-6
+GENESIS_EPOCH = 1
 
 
 def run_cli(args, height=None):
@@ -144,12 +150,16 @@ def main():
 
     total_healthy_weight = sum(p["weight"] for p in healthy)
     total_healthy_rewards = sum(p["rewards_ngonka"] for p in healthy)
-    baseline_rate = total_healthy_rewards / total_healthy_weight if total_healthy_weight > 0 else 0
 
-    print(f"\nHealthy participants (CPoC1>45.5%, final>=45.5%, rewarded): {len(healthy)}")
+    # Chain reward formula: weight / total_epoch_weight * epoch_theoretical_reward
+    epoch_theoretical_reward = INITIAL_EPOCH_REWARD * math.exp(DECAY_RATE * (EPOCH - GENESIS_EPOCH))
+    total_epoch_weight = sum(e["weight"] for e in members_cpoc1.values())
+
+    print(f"\nHealthy participants (CPoC1>45.5%, not dropped, rewarded): {len(healthy)}")
     print(f"  Total weight  : {total_healthy_weight:,}")
     print(f"  Total rewards : {total_healthy_rewards / 1e9:,.2f} GONKA")
-    print(f"  Baseline rate : {baseline_rate / 1e9 * 1000:.6f} GONKA per 1000 weight")
+    print(f"\nEpoch 254 theoretical reward pool : {epoch_theoretical_reward / 1e9:,.6f} GONKA")
+    print(f"Total epoch weight                : {total_epoch_weight:,}")
 
     print(f"\nAffected participants (CPoC1>45.5%, final<45.5%, rewards=0): {len(affected)}")
 
@@ -157,7 +167,7 @@ def main():
     total_compensation = 0
 
     for p in affected:
-        compensation = baseline_rate * p["weight"]
+        compensation = p["weight"] / total_epoch_weight * epoch_theoretical_reward
         total_compensation += compensation
         results.append({
             "address": p["address"],
@@ -203,7 +213,9 @@ def main():
             "final_ratio_lt": FINAL_MAX_RATIO,
             "actual_rewards": 0,
         },
-        "baseline_rate_ngonka_per_weight": baseline_rate,
+        "epoch_theoretical_reward_ngonka": int(epoch_theoretical_reward),
+        "epoch_theoretical_reward_gonka": epoch_theoretical_reward / 1e9,
+        "total_epoch_weight": total_epoch_weight,
         "healthy_participants": len(healthy),
         "affected_participants": len(affected),
         "total_compensation_ngonka": int(total_compensation),

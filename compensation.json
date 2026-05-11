@@ -5,115 +5,117 @@
     "final_ratio_lt": 0.455,
     "actual_rewards": 0
   },
-  "baseline_rate_ngonka_per_weight": 271550401.741379,
+  "epoch_theoretical_reward_ngonka": 286425172268353,
+  "epoch_theoretical_reward_gonka": 286425.17226835364,
+  "total_epoch_weight": 1028204,
   "healthy_participants": 47,
   "affected_participants": 13,
-  "total_compensation_ngonka": 56677185200255,
-  "total_compensation_gonka": 56677.185200255415,
+  "total_compensation_ngonka": 58141966652856,
+  "total_compensation_gonka": 58141.9666528568,
   "compensation": [
     {
       "address": "gonka1q5xt54wncgzk7dxv9x64uln68455g83wu9tugg",
       "weight": 185380,
       "cpoc1_ratio": 0.9708274894810659,
       "final_ratio": 0.035594095715219,
-      "compensation_ngonka": 50340013474816,
-      "compensation_gonka": 50340.01347481684
+      "compensation_ngonka": 51641015241243,
+      "compensation_gonka": 51641.01524124337
     },
     {
       "address": "gonka1pvkv59e72vju2h7s9j3ex62c5xneqey350vpwn",
       "weight": 6921,
       "cpoc1_ratio": 1.1111111111111112,
       "final_ratio": 0.0,
-      "compensation_ngonka": 1879400330452,
-      "compensation_gonka": 1879.4003304520843
+      "compensation_ngonka": 1927972092375,
+      "compensation_gonka": 1927.9720923759055
     },
     {
       "address": "gonka1wthc28t25pg63hzvl07rl8e8r6km6hesl6jhsz",
       "weight": 3986,
       "cpoc1_ratio": 1.1108881083793276,
       "final_ratio": 0.3691877769529437,
-      "compensation_ngonka": 1082399901341,
-      "compensation_gonka": 1082.399901341137
+      "compensation_ngonka": 1110373755268,
+      "compensation_gonka": 1110.3737552680766
     },
     {
       "address": "gonka1h2m79scgaq6ultrwge03wjk0ys4whgcejphmql",
       "weight": 1705,
       "cpoc1_ratio": 1.1759530791788857,
       "final_ratio": 0.0,
-      "compensation_ngonka": 462993434969,
-      "compensation_gonka": 462.99343496905124
+      "compensation_ngonka": 474959170278,
+      "compensation_gonka": 474.9591702789942
     },
     {
       "address": "gonka125n6kr5gvdup0lndfkps7t6rd6592panhrg3np",
       "weight": 1288,
       "cpoc1_ratio": 1.110248447204969,
       "final_ratio": 0.0,
-      "compensation_ngonka": 349756917442,
-      "compensation_gonka": 349.75691744289617
+      "compensation_ngonka": 358796135671,
+      "compensation_gonka": 358.7961356711698
     },
     {
       "address": "gonka1fvly5jrewyjmjfgwah3khy9rttq4cqajcesv9p",
       "weight": 1285,
       "cpoc1_ratio": 0.7610894941634241,
       "final_ratio": 0.0,
-      "compensation_ngonka": 348942266237,
-      "compensation_gonka": 348.9422662376721
+      "compensation_ngonka": 357960430386,
+      "compensation_gonka": 357.96043038622145
     },
     {
       "address": "gonka1f0u3y2wneer8zhz3ypw4x54h38cpa0qsy8ts3e",
       "weight": 1262,
       "cpoc1_ratio": 1.1410459587955626,
       "final_ratio": 0.0,
-      "compensation_ngonka": 342696606997,
-      "compensation_gonka": 342.6966069976203
+      "compensation_ngonka": 351553356534,
+      "compensation_gonka": 351.5533565349505
     },
     {
       "address": "gonka18xeqnspxpg2vncufnjne485rkaagwvz7whyn0d",
       "weight": 1253,
       "cpoc1_ratio": 1.174780526735834,
       "final_ratio": 0.0,
-      "compensation_ngonka": 340252653381,
-      "compensation_gonka": 340.25265338194794
+      "compensation_ngonka": 349046240680,
+      "compensation_gonka": 349.0462406801054
     },
     {
       "address": "gonka19cjm4c5mt3j3qdr8vhytmm4hef3pnkvkm0x7m2",
       "weight": 1245,
       "cpoc1_ratio": 1.1566265060240963,
       "final_ratio": 0.0,
-      "compensation_ngonka": 338080250168,
-      "compensation_gonka": 338.0802501680169
+      "compensation_ngonka": 346817693253,
+      "compensation_gonka": 346.8176932535764
     },
     {
       "address": "gonka1xwkesaxvdadh9wt9yyladu0r260s7whklcktds",
       "weight": 1245,
       "cpoc1_ratio": 1.1759036144578314,
       "final_ratio": 0.0,
-      "compensation_ngonka": 338080250168,
-      "compensation_gonka": 338.0802501680169
+      "compensation_ngonka": 346817693253,
+      "compensation_gonka": 346.8176932535764
     },
     {
       "address": "gonka163ug8zucqeag9v5ey4au34jqt7vejkmxsg74eu",
       "weight": 1236,
       "cpoc1_ratio": 1.1763754045307444,
       "final_ratio": 0.0,
-      "compensation_ngonka": 335636296552,
-      "compensation_gonka": 335.6362965523445
+      "compensation_ngonka": 344310577398,
+      "compensation_gonka": 344.31057739873125
     },
     {
       "address": "gonka1mdy7nlecw4xaqdxmeh3qlqzakg9ftge9szfqgg",
       "weight": 1124,
       "cpoc1_ratio": 1.1761565836298933,
       "final_ratio": 0.0,
-      "compensation_ngonka": 305222651557,
-      "compensation_gonka": 305.22265155731
+      "compensation_ngonka": 313110913427,
+      "compensation_gonka": 313.1109134273252
     },
     {
       "address": "gonka1y4kyhqy022gt4kklxxflgqkutnx96ssww66zg6",
       "weight": 787,
       "cpoc1_ratio": 1.1753494282083863,
       "final_ratio": 0.0,
-      "compensation_ngonka": 213710166170,
-      "compensation_gonka": 213.7101661704653
+      "compensation_ngonka": 219233353084,
+      "compensation_gonka": 219.23335308479085
     }
   ]
 }

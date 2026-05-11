@@ -76,25 +76,27 @@ Eligibility criteria:
 
 CPoC 1 dropouts are excluded (failed before the bug window). Participants who received rewards are excluded (partially compensated by the protocol).
 
-This yields **13 affected addresses** with a total compensation of **56,677.19 GONKA** — see `compensation.csv` for per-address amounts.
+This yields **13 affected addresses** with a total compensation of **58,141.97 GONKA** — see `compensation.csv` for per-address amounts.
+
+Compensation formula: `weight / total_epoch_weight * epoch_theoretical_reward`  
+Epoch 254 theoretical reward pool: **286,425.17 GONKA** (`323,000 * e^(-0.000475 * 253)`)  
+Total epoch weight: **1,028,204**
 
 | Address | Weight | CPoC 1 | Final CPoC | Compensation (GONKA) |
 |---------|--------|--------|------------|---------------------|
-| gonka1q5xt54wncgzk7dxv9x64uln68455g83wu9tugg | 185,380 | pass | fail | 50,340.01 |
-| gonka1pvkv59e72vju2h7s9j3ex62c5xneqey350vpwn | 6,921 | pass | fail | 1,879.40 |
-| gonka1wthc28t25pg63hzvl07rl8e8r6km6hesl6jhsz | 3,986 | pass | fail | 1,082.40 |
-| gonka1h2m79scgaq6ultrwge03wjk0ys4whgcejphmql | 1,705 | pass | fail | 462.99 |
-| gonka125n6kr5gvdup0lndfkps7t6rd6592panhrg3np | 1,288 | pass | fail | 349.76 |
-| gonka1fvly5jrewyjmjfgwah3khy9rttq4cqajcesv9p | 1,285 | pass | fail | 348.94 |
-| gonka1f0u3y2wneer8zhz3ypw4x54h38cpa0qsy8ts3e | 1,262 | pass | fail | 342.70 |
-| gonka18xeqnspxpg2vncufnjne485rkaagwvz7whyn0d | 1,253 | pass | fail | 340.25 |
-| gonka19cjm4c5mt3j3qdr8vhytmm4hef3pnkvkm0x7m2 | 1,245 | pass | fail | 338.08 |
-| gonka1xwkesaxvdadh9wt9yyladu0r260s7whklcktds | 1,245 | pass | fail | 338.08 |
-| gonka163ug8zucqeag9v5ey4au34jqt7vejkmxsg74eu | 1,236 | pass | fail | 335.64 |
-| gonka1mdy7nlecw4xaqdxmeh3qlqzakg9ftge9szfqgg | 1,124 | pass | fail | 305.22 |
-| gonka1y4kyhqy022gt4kklxxflgqkutnx96ssww66zg6 | 787 | pass | fail | 213.71 |
-
-Baseline reward rate: **271.55 GONKA per 1,000 weight** (derived from 47 healthy participants).
+| gonka1q5xt54wncgzk7dxv9x64uln68455g83wu9tugg | 185,380 | pass | fail | 51,641.02 |
+| gonka1pvkv59e72vju2h7s9j3ex62c5xneqey350vpwn | 6,921 | pass | fail | 1,927.97 |
+| gonka1wthc28t25pg63hzvl07rl8e8r6km6hesl6jhsz | 3,986 | pass | fail | 1,110.37 |
+| gonka1h2m79scgaq6ultrwge03wjk0ys4whgcejphmql | 1,705 | pass | fail | 474.96 |
+| gonka125n6kr5gvdup0lndfkps7t6rd6592panhrg3np | 1,288 | pass | fail | 358.80 |
+| gonka1fvly5jrewyjmjfgwah3khy9rttq4cqajcesv9p | 1,285 | pass | fail | 357.96 |
+| gonka1f0u3y2wneer8zhz3ypw4x54h38cpa0qsy8ts3e | 1,262 | pass | fail | 351.55 |
+| gonka18xeqnspxpg2vncufnjne485rkaagwvz7whyn0d | 1,253 | pass | fail | 349.05 |
+| gonka19cjm4c5mt3j3qdr8vhytmm4hef3pnkvkm0x7m2 | 1,245 | pass | fail | 346.82 |
+| gonka1xwkesaxvdadh9wt9yyladu0r260s7whklcktds | 1,245 | pass | fail | 346.82 |
+| gonka163ug8zucqeag9v5ey4au34jqt7vejkmxsg74eu | 1,236 | pass | fail | 344.31 |
+| gonka1mdy7nlecw4xaqdxmeh3qlqzakg9ftge9szfqgg | 1,124 | pass | fail | 313.11 |
+| gonka1y4kyhqy022gt4kklxxflgqkutnx96ssww66zg6 | 787 | pass | fail | 219.23 |
 
 ## Fix Commits
 
