@@ -17,7 +17,7 @@ Commit `f85f991b` — `fix(api): avoid blocking startup on devshard migration` �
 
 Prior versions had a blocking devshard migration on startup: after `docker restart api`, the servers on ports 9100, 9200, and 9400 did not become available until the migration completed, which could take up to ~20 minutes. Participants who restarted their API container during epoch 254 to apply the `v0.2.12-api-post2` fix came back online too late to participate in subsequent CPoC rounds.
 
-The `v0.2.12-api-post2` release (`347d947596`) was tagged 2026-05-06T08:38:35Z — between CPoC 1 (07:54 UTC) and CPoC 2 (11:41 UTC). Participants who applied it immediately after CPoC 1 would have had their API offline during CPoC 2 and potentially CPoC 3.
+The `v0.2.12-api-post2` release was tagged 2026-05-06T08:38:35Z — between CPoC 1 (07:54 UTC) and CPoC 2 (11:41 UTC). Participants who applied it immediately after CPoC 1 would have had their API offline during CPoC 2 and potentially CPoC 3.
 
 ## CPoC Results Summary
 
@@ -101,9 +101,9 @@ Total epoch weight: **1,028,204**
 
 ## Fix Commits
 
-| Version | Key Commit | Timestamp | Fix |
-|---------|-----------|-----------|-----|
-| v0.2.12-api-post2 | `347d947596` | 2026-05-06T08:38:35Z | Kimi-K2.6 response parsing fix |
-| v0.2.12-api-post3 | `f85f991b17` | 2026-05-06T19:00:03Z | Parallel devshard loading — removes blocking startup |
+| Version | Timestamp | Fix |
+|---------|-----------|-----|
+| v0.2.12-api-post2 | 2026-05-06T08:38:35Z | Kimi-K2.6 response parsing fix |
+| v0.2.12-api-post3 | 2026-05-06T19:00:03Z | Parallel devshard loading — removes blocking startup (commit `f85f991b17`) |
 
 The root blocker (`f85f991b` — avoid blocking startup on devshard migration) landed in `v0.2.12-api-post3`, released after epoch 254 ended.
